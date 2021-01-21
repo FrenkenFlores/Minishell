@@ -1,0 +1,25 @@
+OBJ = $(SRC:.c=.o)
+LIB_DIR = ./libft/
+LIB_HDR = ./libft/libft.h
+LIBFT = ./libft/libft.a
+
+all: $(LIBFT) $(NAME)
+
+$(LIBFT):
+	@make -C $(LIB_DIR)
+
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+
+$(OBJ): %.o: %.c
+	$(CC) $(FLAGS) -I$(LIB_HDR) $(HEADER) -o $@ -c $<
+
+clean:
+	make clean -C libft/
+	rm -rf $(OBJ)
+
+fclean: clean
+	make fclean -C libft/
+	rm -f $(NAME)
+
+re: fclean $(NAME)
