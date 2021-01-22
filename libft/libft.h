@@ -36,6 +36,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
+int			ft_isnbr(char *s);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
@@ -54,6 +55,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 int         ft_strcmp(const char *s1, const char *s2);
-int	ft_isspace(char c);
+int			ft_isspace(char c);
+int 		ft_arrlen(char **s);
 
 #endif

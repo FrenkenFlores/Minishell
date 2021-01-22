@@ -104,6 +104,10 @@ void					print_env(t_shell *shell);
 ** exit.c
 */
 
+void					exit_shell(t_shell *shell, int exit_status);
+void					close_shell(t_shell *shell);
+
+
 /*
 ** unset.c
 */
@@ -160,10 +164,6 @@ int						is_escape_char(char ch);
 void					check_correct_command(t_shell *shell,
 								t_command *command, char *data);
 
-/*
-** exit_shell.c
-*/
-void					exit_shell(t_shell *shell, int exit_status);
 
 /*
 ** main.c
@@ -259,9 +259,13 @@ void					upd_env(t_shell *shell, char *variable,
 int						check_env_exist(t_shell *shell, char *variable);
 
 /*
-** free_buf.c
+** free_shell.c
 */
+
 void					free_buf(t_shell *shell);
+void					nested_free(char **array);
+void					free_tokens(t_shell *shell);
+static void				free_shell(t_shell *shell);
 
 /*
 ** check_command_utils.c
