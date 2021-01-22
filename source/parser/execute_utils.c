@@ -73,8 +73,8 @@ void	child_process(t_shell *shell, t_command *command)
 		execve(command->correct_path, command->argv, shell->env);
 		if (errno == 13)
 		{
-			ft_printf_error("minishell: %s: %s\n", command->correct_path,
-							strerror(errno));
+//			ft_printf_error("minishell: %s: %s\n", command->correct_path,
+//							strerror(errno));
 			exit_shell(shell, 126);
 		}
 		exit_shell(shell, 127);

@@ -3,64 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/26 01:36:17 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/27 23:40:56 by wabomina         ###   ########.fr       */
+/*   Created: 2020/05/17 14:30:57 by fflores           #+#    #+#             */
+/*   Updated: 2020/05/29 22:33:04 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			ft_lenint(int n)
+static int		ft_numsize(int n)
 {
-	int				i;
+	int i;
+	int j;
 
 	i = 0;
+	j = n;
 	if (n == 0)
 		return (1);
-	if (n < 0)
-		n *= -1;
-	while (n)
+	while (j != 0)
 	{
-		n = n / 10;
+		j = j / 10;
 		i++;
 	}
 	return (i);
 }
 
-static int			ft_z(int n)
+static long	int	ft_i(int size)
 {
-	if (n >= 0)
-		return (1);
-	else
-		return (2);
+	long int	i;
+	int			j;
+
+	i = 1;
+	j = 0;
+	while (j != size)
+	{
+		i = i * 10;
+		j++;
+	}
+	return (i);
 }
 
-char				*ft_itoa(int n)
+static char		*ft_maloc(int size, int n)
 {
-	char			*res;
-	long int		nbr;
-	int				len;
+	if (n < 0)
+		return ((char*)malloc(sizeof(char) * size + 2));
+	return ((char*)malloc(sizeof(char) * size + 1));
+}
 
-	nbr = n;
-	len = ft_lenint(nbr) + ft_z(nbr);
-	if (!(res = (char *)malloc(len)))
-		return (NULL);
-	if (nbr == 0)
-		res[0] = '0';
-	if (nbr < 0)
+char			*ft_itoa(int n)
+{
+	char		*tmp;
+	char		*str;
+	int			size;
+	int long	i;
+	int			k;
+
+	k = 1;
+	size = ft_numsize(n) + 1;
+	str = ft_maloc((size - 1), n);
+	if (!str)
+		return (0);
+	tmp = str;
+	while (--size != 0 && str)
 	{
-		res[0] = '-';
-		nbr *= -1;
+		if (n < 0 && k > 0)
+		{
+			*tmp++ = '-';
+			k = -1;
+		}
+		i = ft_i(size);
+		*tmp = '0' + ((n - (n / i) * i) * 10 / i) * k;
+		tmp++;
 	}
-	while (nbr)
-	{
-		len--;
-		res[len - 1] = nbr % 10 + '0';
-		nbr /= 10;
-	}
-	len = ft_lenint(n) + ft_z(n);
-	res[len - 1] = '\0';
-	return (res);
+	*tmp = '\0';
+	return (str);
 }

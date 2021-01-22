@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_free.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 18:09:35 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/19 18:09:38 by wabomina         ###   ########.fr       */
+/*   Created: 2020/08/03 10:37:29 by fflores           #+#    #+#             */
+/*   Updated: 2020/08/03 10:37:38 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putstr_free(char *s, int fd)
+size_t	ft_strlen(const char *str)
 {
-	int	len;
+	size_t i;
 
-	len = write(fd, s, ft_strlen(s));
-	free(s);
-	return (len);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

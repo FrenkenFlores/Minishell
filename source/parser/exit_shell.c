@@ -6,7 +6,7 @@ void			free_command(t_shell *shell)
 	if (!shell || !shell->command)
 		return ;
 	free(shell->command->correct_path);
-	nested_free(shell->command->argv);
+//	nested_free(shell->command->argv);
 	free(shell->command->out_file_name);
 	free(shell->command->input_file_name);
 	if (shell->command->file_fd_in)
@@ -35,10 +35,10 @@ static void		free_shell(t_shell *shell)
 {
 	if (!shell)
 		return ;
-	nested_free(shell->path);
+//	nested_free(shell->path);
 	free(shell->cwd);
-	nested_free(shell->buildin_commands);
-	nested_free(shell->env);
+//	nested_free(shell->buildin_commands);
+//	nested_free(shell->env);
 	free(shell->line);
 	free(shell->last_var);
 	close(shell->fd_stdin);
@@ -47,7 +47,7 @@ static void		free_shell(t_shell *shell)
 	free(shell);
 }
 
-void			exit_programm(t_shell *shell, int exit_status)
+void			exit_shell(t_shell *shell, int exit_status)
 {
 	free_tokens(shell);
 	free_command(shell);

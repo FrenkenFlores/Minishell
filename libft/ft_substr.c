@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/26 00:06:31 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/31 18:43:19 by wabomina         ###   ########.fr       */
+/*   Created: 2020/05/13 17:27:55 by fflores           #+#    #+#             */
+/*   Updated: 2020/05/31 17:13:21 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*sub;
 	size_t	i;
-	size_t	sublen;
-	char	*part;
 
-	i = 0;
 	if (!s)
 		return (NULL);
-	if (len <= 0 || start > ft_strlen(s))
+	if (ft_strlen(s) < start)
 		return (ft_strdup(""));
-	sublen = ft_strlen(s + start);
-	if (sublen < len)
-		len = sublen;
-	if (!(part = (char *)malloc(sizeof(char) * (len + 1))))
+	if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	i = 0;
+	sub = (char*)malloc((len + 1) * sizeof(char));
+	if (sub == NULL)
 		return (NULL);
-	while (i < len)
+	while (len > i && *s != '\0')
 	{
-		part[i] = s[start + i];
+		sub[i] = s[start + i];
 		i++;
 	}
-	part[i] = '\0';
-	return (part);
+	sub[i] = '\0';
+	return (sub);
 }

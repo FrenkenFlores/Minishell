@@ -35,6 +35,7 @@ static void		int_handler(int signum)
 
 void			set_signals_handlers(void)
 {
-	signal(SIGQUIT, quit_handler);
-	signal(SIGINT, int_handler);
+	//signal()	// ctrl + D
+	signal(SIGQUIT, quit_handler); // ctrl + /
+	signal(SIGINT, int_handler); // ctrl + C
 }

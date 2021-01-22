@@ -26,7 +26,8 @@ static t_shell	*preset_main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	if (!(shell = init_shell(envp)))
-		exit_shell(shell, EXIT_FAILURE);
+		exit(EXIT_FAILURE);
+//		exit_shell(shell, EXIT_FAILURE); // Memory is not allocated to be freed : ERROR
 	set_signals_handlers();
 	return (shell);
 }
@@ -57,16 +58,16 @@ static void		parse_and_execute(t_shell *shell)
 
 static void		skip_whitespaces_in_line(t_shell *shell)
 {
-	char		*temp_line;
+	char		*temp_line; // <------
 
 	temp_line = shell->line;
 	shell->line = skip_whitespaces(shell->line);
-	if (!(shell->line = ft_strdup(shell->line)))
+	if (!(shell->line = ft_strdup(shell->line))) // <------ leak
 	{
-		free(temp_line);
+		free(temp_line);// <------
 		exit_shell(shell, EXIT_FAILURE);
 	}
-	free(temp_line);
+	free(temp_line);// <------
 }
 
 int				main(int argc, char *argv[], char *envp[])

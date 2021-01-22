@@ -23,6 +23,8 @@
 # include <sys/syslimits.h>
 # include <sys/stat.h>
 # include "./libft/libft.h"
+# include "./get_next_line/get_next_line.h"
+# include "./ft_printf/ft_printf.h"
 
 # define PATHINPROMPT 1
 # define SHELL_PROMPT "minishell$ "
@@ -161,7 +163,7 @@ void					check_correct_command(t_shell *shell,
 /*
 ** exit_shell.c
 */
-void					exit_programm(t_shell *shell, int exit_status);
+void					exit_shell(t_shell *shell, int exit_status);
 
 /*
 ** main.c

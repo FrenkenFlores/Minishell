@@ -28,21 +28,26 @@ SRCS = 	./source/parser/check_command.c\
 		./source/parser/utils_3.c\
 		./source/builtins/echo.c\
 		./source/builtins/env.c\
-		./source/builtins/pwd.c
+		./source/builtins/pwd.c\
+		./get_next_line/get_next_line.c\
+		./get_next_line/get_next_line_utils.c
 OBJS = ${SRCS:c=o}
 
 all: $(NAME)
 
 $(NAME):
 	make -C libft
-	$(CC) $(FLAGS) ./libft/libft.a $(SRCS) -o $(NAME)
+	make -C ft_printf
+	$(CC) ./libft/libft.a ./ft_printf/libftprintf.a $(SRCS) -o $(NAME)
 
 clean:
 	make -C libft clean
+	make -C ft_printf clean
 	rm -f $(OBJS)
 
 fclean: clean
 	make -C libft fclean
+	make -C ft_printf fclean
 	rm -f $(NAME)
 
 re: fclean all	

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strisnum.c                                      :+:      :+:    :+:   */
+/*   ft_combine_flags.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 18:12:10 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/19 18:12:16 by wabomina         ###   ########.fr       */
+/*   Created: 2020/08/03 10:08:12 by fflores           #+#    #+#             */
+/*   Updated: 2020/08/03 10:08:28 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_strisnum(char *s)
+void	ft_combine_flags(t_flags *flag)
 {
-	if (ft_isdigit(*s) || ft_strchr("-+", *s))
+	if (flag->negative)
+		flag->zero_flag = 0;
+	if (flag->width < 0)
 	{
-		s++;
-		while (*s)
-		{
-			if (ft_isdigit(*s))
-				s++;
-			else
-				return (0);
-		}
+		flag->negative = 1;
+		flag->width *= -1;
 	}
-	else
-		return (0);
-	return (1);
+	if (flag->precision < 0)
+		flag->dot = 0;
 }

@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/30 11:47:14 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/30 12:21:58 by wabomina         ###   ########.fr       */
+/*   Created: 2020/08/03 10:19:33 by fflores           #+#    #+#             */
+/*   Updated: 2020/08/03 10:19:56 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-t_list		*ft_lstnew(void *content)
+int	ft_isdigit(int c)
 {
-	t_list	*new;
-
-	if (!(new = (t_list*)malloc(sizeof(t_list))))
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

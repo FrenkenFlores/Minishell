@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arraylen.c                                      :+:      :+:    :+:   */
+/*   ft_atoi_length.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 18:30:11 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/19 18:30:14 by wabomina         ###   ########.fr       */
+/*   Created: 2020/08/03 10:03:55 by fflores           #+#    #+#             */
+/*   Updated: 2020/08/03 10:04:32 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_arraylen(char **array)
+int	ft_atoi_length(int n)
 {
-	int len;
+	size_t	i;
 
-	len = 0;
-	while (array[len])
-		len++;
-	return (len);
+	if (n > 0)
+		i = 0;
+	else
+		i = 1;
+	while (1)
+	{
+		i++;
+		n /= 10;
+		if (!n)
+			break ;
+	}
+	return (i);
 }

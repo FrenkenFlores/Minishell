@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstrn.c                                       :+:      :+:    :+:   */
+/*   ft_type.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/19 18:10:28 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/19 18:10:36 by wabomina         ###   ########.fr       */
+/*   Created: 2020/08/03 10:37:49 by fflores           #+#    #+#             */
+/*   Updated: 2020/08/03 10:38:01 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putstrn(char *str, size_t len, int fd)
+int	ft_type(int type)
 {
-	if (!str)
-		return (0);
-	return (write(fd, str, len));
+	if ((type == 'c') || (type == 's') || (type == 'p') || (type == 'd') ||
+	(type == 'i') || (type == 'u') || (type == 'x') || (type == 'X') ||
+	(type == '%'))
+		return (1);
+	return (0);
 }

@@ -3,78 +3,85 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/26 12:11:03 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/30 01:00:49 by wabomina         ###   ########.fr       */
+/*   Created: 2020/05/16 02:53:47 by fflores           #+#    #+#             */
+/*   Updated: 2020/06/01 11:20:13 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int			count_w(const char *s, char c)
+static int	ft_len(char const *s, char c)
 {
 	int i;
 
 	i = 0;
-	while (*s)
-	{
-		while (*s == c)
-			s++;
-		if (*s != c && *s != '\0')
-			i++;
-		while (*s != c && *s != '\0')
-			s++;
-	}
-	return (i);
-}
-
-static size_t		len(const char *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
+	while (s[i] != c && s[i] != '\0')
 		i++;
-	return (i);
+	return (i + 1);
 }
 
-static char			**clear(char **s, int i)
+static int	ft_spnum(char const *s, char c)
 {
-	while (i > 0)
-	{
-		free(s[i]);
-		i--;
-	}
-	free(s[i]);
-	return (NULL);
-}
-
-char				**ft_split(char const *s, char c)
-{
-	char	**result;
-	int		i;
-	int		w;
-	int		j;
+	int i;
+	int j;
 
 	i = 0;
-	w = 0;
-	if (!s || !(result = (char **)malloc(sizeof(char *) * (count_w(s, c) + 1))))
-		return (NULL);
-	while ((j = 0) || s[i] != '\0')
+	j = 0;
+	if (!s)
+		return (0);
+	while (s[i] == c && s[i + 1] == c)
+		i++;
+	if (s[i + 1] == '\0')
+		return (0);
+	while (s[i] != '\0')
 	{
-		while (s[i] != '\0' && s[i] == c)
-			i++;
-		if (s[i] != '\0')
-		{
-			if (!(result[w] = (char*)malloc(sizeof(char) * \
-				(len(s + i, c) + 1))))
-				return (clear(result, w));
-			while (s[i] != '\0' && s[i] != c)
-				result[w][j++] = s[i++];
-			result[w++][j] = 0;
-		}
+		i++;
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+			j++;
 	}
-	result[w] = 0;
-	return (result);
+	if (i == j + 1)
+		return (0);
+	return (j + 2);
+}
+
+static void	ft_maloc(char **mas, char const *s, char c)
+{
+	int k;
+	int j;
+	int i;
+
+	k = ft_spnum(s, c);
+	j = 0;
+	while (k != j && *s != '\0')
+	{
+		i = 0;
+		while (*s == c && *s != '\0')
+			s++;
+		mas[j] = (char*)malloc(ft_len(s, c) * sizeof(char));
+		if (mas[j] == NULL)
+			while (j != 0)
+			{
+				free(mas[j]);
+				j--;
+			}
+		while (*s != c && *s != '\0')
+			mas[j][i++] = *s++;
+		mas[j++][i] = '\0';
+		while (*s == c && *s != '\0')
+			s++;
+	}
+	mas[j] = NULL;
+}
+
+char		**ft_split(char const *s, char c)
+{
+	char	**mas;
+
+	mas = (char**)malloc(ft_spnum(s, c) * sizeof(char*));
+	if (!mas)
+		return (NULL);
+	ft_maloc(mas, s, c);
+	return (mas);
 }

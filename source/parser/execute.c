@@ -2,6 +2,35 @@
 #include "../../minishell.h"
 
 
+
+void cd(t_shell *shell, char **argv);
+void export(t_shell *shell, t_command *command);
+void unset(t_shell *shell, t_command *command);
+void close_shell(t_shell *shell);
+
+
+void cd(t_shell *shell, char **argv)
+{
+	return;
+}
+
+void export(t_shell *shell, t_command *command)
+{
+	return;
+}
+
+void unset(t_shell *shell, t_command *command)
+{
+	return;
+}
+
+void close_shell(t_shell *shell)
+{
+	return;
+}
+
+
+
 int				run_buildin(t_shell *shell, t_command *command)
 {
 	if (ft_strcmp(command->argv[0], "echo"))

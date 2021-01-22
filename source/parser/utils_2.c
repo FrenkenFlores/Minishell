@@ -8,7 +8,7 @@ void	upd_shell_path(t_shell *shell)
 
 	if (check_env_exist(shell, "PATH="))
 	{
-		nested_free(shell->path);
+//		nested_free(shell->path);
 		shell->path = ft_split(get_from_env("PATH=", shell->env) + 5, ':');
 		i = 0;
 		while (shell->path[i])
@@ -21,7 +21,7 @@ void	upd_shell_path(t_shell *shell)
 	}
 	else if (shell->path)
 	{
-		nested_free(shell->path);
+//		nested_free(shell->path);
 		shell->path = (char **)(malloc(sizeof(char *) * 1));
 		if (!shell->path)
 			exit_shell(shell, EXIT_FAILURE);
@@ -32,17 +32,17 @@ void	upd_shell_path(t_shell *shell)
 void	get_shell_path(t_shell *shell, char **env)
 {
 	int		i;
-	char	*temp;
+	char	*temp; // Is not used
 
 	if (check_env_exist(shell, "PATH"))
 	{
-		shell->path = ft_split(get_from_env("PATH=", env) + 5, ':');
+		shell->path = ft_split(get_from_env("PATH=", env) + 5, ':'); // ???
 		i = 0;
 		while (shell->path[i])
 		{
-			temp = shell->path[i];
+			temp = shell->path[i]; // <----
 			shell->path[i] = ft_strjoin(shell->path[i], "/");
-			free(temp);
+			free(temp); //  <----
 			i++;
 		}
 	}

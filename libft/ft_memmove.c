@@ -3,39 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/26 17:13:00 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/27 12:52:44 by wabomina         ###   ########.fr       */
+/*   Created: 2020/05/05 02:57:45 by fflores           #+#    #+#             */
+/*   Updated: 2020/05/23 18:25:16 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*p1;
-	unsigned char	*p2;
+	char *str1;
 
-	i = 0;
-	p1 = (unsigned char *)dest;
-	p2 = (unsigned char *)src;
-	if (dest == src)
-		return (dest);
-	if (src < dest)
+	str1 = (char*)dst;
+	if (dst || src)
 	{
-		i = n;
-		while (i-- > 0)
-			p1[i] = p2[i];
-	}
-	else
-	{
-		while (i < n)
+		if (n == 0)
+			return (dst);
+		if (str1 > (char*)src)
 		{
-			p1[i] = p2[i];
-			i++;
+			str1 = str1 + n - 1;
+			src = src + n - 1;
+			while (n-- > 0)
+				*str1-- = *((char*)src--);
 		}
+		else
+		{
+			while (n > 0)
+			{
+				*str1++ = *((char*)src++);
+				n--;
+			}
+		}
+		return (dst);
 	}
-	return (dest);
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/25 12:27:16 by wabomina          #+#    #+#             */
-/*   Updated: 2020/05/31 17:28:41 by wabomina         ###   ########.fr       */
+/*   Created: 2020/05/09 16:55:30 by fflores           #+#    #+#             */
+/*   Updated: 2020/05/30 00:14:59 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 int	ft_atoi(const char *str)
 {
-	int	res;
-	int	z;
+	int long i;
+	int long j;
 
-	res = 0;
-	z = 1;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r' || \
-			*str == '\v' || *str == '\f')
+	i = 1;
+	j = 0;
+	while ((*str == '\n') || (*str == '\t') || (*str == '\v')
+			|| (*str == ' ') || (*str == '\f') || (*str == '\r'))
 		str++;
-	if (*str == '+')
+	if (*str == '-')
+		i = -1;
+	if (*str == '-' || *str == '+')
 		str++;
-	else if (*str == '-')
+	while (*str >= '0' && *str <= '9' && *str != '\0')
 	{
-		z = -1;
+		j = j * 10 + (*str - '0');
 		str++;
+		if (j > 100000000000000000 && i == 1)
+			return (-1);
+		if (j > 100000000000000000 && i == -1)
+			return (0);
 	}
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		res = res * 10 + *str - '0';
-		str++;
-	}
-	return (res * z);
+	return (j * i);
 }

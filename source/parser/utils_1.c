@@ -58,7 +58,8 @@ t_shell		*init_shell(char **env)
 	t_shell		*shell;
 
 	if (!(shell = ft_calloc(1, sizeof(t_shell))))
-		exit_shell(shell, EXIT_FAILURE);
+		exit (EXIT_FAILURE);
+//		exit_shell(shell, EXIT_FAILURE); // cannot free unallocated memory
 	get_env(shell, env);
 	get_shell_path(shell, env);
 	get_shell_cwd(shell);
