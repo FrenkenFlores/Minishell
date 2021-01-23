@@ -37,9 +37,11 @@ typedef struct	s_parameters
 	char		line;
 	int			head_zero;
 	int			back_zero;
+	int			fd;
 	size_t		length;
 }				t_parameters;
 
+int				ft_dprintf(int fd, const char *format, ...);
 int				ft_printf(const char *format, ...);
 int				ft_check_string(t_parameters prmtrs);
 int				ft_check_parameters(t_parameters *prmtrs);
@@ -50,6 +52,7 @@ int				ft_type(int type);
 int				ft_flag_and_digit(int c);
 int				ft_isdigit(int c);
 void			ft_putchar(char c);
+void			ft_dputchar(char c, int fd);
 void			ft_start(t_flags *flag, t_parameters *prmtrs);
 void			ft_null_str(char *str, t_parameters *prmtrs);
 void			ft_combine_flags(t_flags *flag);

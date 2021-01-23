@@ -35,7 +35,7 @@ OBJS = ${SRCS:c=o}
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS) $(HEADER)
 	make -C libft
 	make -C ft_printf
 	$(CC) ./libft/libft.a ./ft_printf/libftprintf.a $(SRCS) -o $(NAME)

@@ -5,6 +5,7 @@ static void		quit_handler(int signum)
 {
 	int			exit_status;
 
+	ft_printf("\b\b  \b\b");
 	if ((exit_status = wait_for_process()) == -1)
 		return ;
 	else if (exit_status == 131)
@@ -18,6 +19,7 @@ static void		int_handler(int signum)
 
 	if ((exit_status = wait_for_process()) == -1 && g_sigint_flag != 2)
 	{
+		ft_printf("\b\b  \b\b");
 		ft_printf("\n");
 		print_prompt();
 		g_sigint_flag = 1;
@@ -35,7 +37,6 @@ static void		int_handler(int signum)
 
 void			set_signals_handlers(void)
 {
-	//signal()	// ctrl + D
-	signal(SIGQUIT, quit_handler); // ctrl + /
+	signal(SIGQUIT, quit_handler); // (ctrl + \)
 	signal(SIGINT, int_handler); // ctrl + C
 }

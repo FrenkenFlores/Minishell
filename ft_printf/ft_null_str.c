@@ -19,20 +19,20 @@ void	ft_null_str(char *str, t_parameters *prmtrs)
 	zero = '\0';
 	if (prmtrs->head_zero)
 	{
-		write(1, &zero, 1);
+		write(prmtrs->fd, &zero, 1);
 		prmtrs->length++;
 	}
 	if (str)
 	{
 		while (*str)
 		{
-			write(1, str, 1);
+			write(prmtrs->fd, str, 1);
 			str++;
 		}
 	}
 	if (prmtrs->back_zero)
 	{
-		write(1, &zero, 1);
+		write(prmtrs->fd, &zero, 1);
 		prmtrs->length++;
 	}
 }

@@ -40,7 +40,6 @@ static int		shell_read_fd(t_shell *shell, char **line,
 								char **temp_line, char *buf)
 {
 	ssize_t		bytes;
-
 	while ((bytes = read(0, buf, BUFFER_SIZE)) >= 0)
 	{
 		if (g_sigint_flag)
@@ -56,6 +55,7 @@ static int		shell_read_fd(t_shell *shell, char **line,
 			!TEST ? write(2, "exit\n", 5) : 0;
 			exit_shell(shell, g_last_exit_status);
 		}
+		ft_dprintf(2, "  \b\b");
 		if (*temp_line)
 			join_buf(shell, temp_line, buf);
 		else if (!(*temp_line = ft_strdup(buf)))
