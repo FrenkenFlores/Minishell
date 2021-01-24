@@ -14,7 +14,7 @@
 
 int		unset_valid(char *name)
 {
-	if (ft_isalpha(*name++) == '\0')
+	if (ft_isalpha(*name++) == 0)
 		return (0);
 	while (*name)
 	{
@@ -34,9 +34,8 @@ void	unset(t_shell *shell, t_command *command)
 	{
 		if (check_env_exist(shell, command->argv[i]))
 			remove_env(shell, command->argv[i]);
-		if (!unset_valid(command->argv[i]))
-		{
-			ft_dprintf(2, "minishell: unset: `%s': not a valid "\
+		if (!unset_valid(command->argv[i]))	
+			ft_printf("minishell: unset: `%s': not a valid "\
 							"identifier\n", command->argv[i]);
 			g_last_exit_status = 1;
 			return ;
@@ -45,4 +44,3 @@ void	unset(t_shell *shell, t_command *command)
 	}
 	upd_shell_path(shell);
 }
-

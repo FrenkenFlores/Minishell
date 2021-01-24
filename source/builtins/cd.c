@@ -12,16 +12,16 @@
 
 #include "../../minishell.h"
 
-int		check_env_exist(t_shell *shell, char *variable)
+int		check_env_exist(t_shell *shell, char *var)
 {
 	int	i;
 
 	i = 0;
-	if (*variable == 0)
+	if (*var == 0)
 		return (0);
 	while (shell->env[i])
 	{
-		if (!ft_strncmp(shell->env[i], variable, ft_strlen(variable)))
+		if (!ft_strncmp(shell->env[i], var, ft_strlen(var)))
 			return (1);
 		i++;
 	}
@@ -51,20 +51,20 @@ void	add_env(t_shell *shell, char *variable, char *value)
 	shell->env = new_env;
 }
 
-void	upd_env(t_shell *shell, char *variable, char *new_value)
+void	upd_env(t_shell *shell, char *var, char *new_value)
 {
 	int	i;
 
 	i = 0;
-	if (check_env_exist(shell, variable))
+	if (check_env_exist(shell, var))
 	{
 		while (shell->env[i])
 		{
-			if (!ft_strncmp(shell->env[i], variable, ft_strlen(variable)))
+			if (!ft_strncmp(shell->env[i], var, ft_strlen(var)))
 			{
 				free(shell->env[i]);
-				shell->env[i] = ft_strjoin(variable, new_value);
-				free(variable);
+				shell->env[i] = ft_strjoin(var, new_value);
+				free(var);
 				free(new_value);
 				break ;
 			}
@@ -72,7 +72,7 @@ void	upd_env(t_shell *shell, char *variable, char *new_value)
 		}
 	}
 	else
-		add_env(shell, variable, new_value);
+		add_env(shell, var, new_value);
 }
 
 void	cd(t_shell *shell, char **args)
@@ -85,8 +85,8 @@ void	cd(t_shell *shell, char **args)
 	current_cd = getcwd(NULL, 0);
 	if (chdir(args[1]) == -1)
 	{
-		ft_printf("minishell: cd: %s: %s\n", args[1]);
-		//ft_printf(strerror(errno));
+		ft_printf("minishell: cd: %s: ", args[1]);
+		ft_printf("%s\n", strerror(errno));
 		g_last_exit_status = 1;
 	}
 	upd_env(shell, ft_strdup("PWD="), getcwd(NULL, 0));

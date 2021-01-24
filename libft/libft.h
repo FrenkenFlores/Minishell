@@ -18,7 +18,6 @@
 # include <stddef.h>
 # include <unistd.h>
 
-
 void		*ft_memset(void *s, int c, size_t n);
 void		ft_bzero(void *str, size_t nbr);
 void		*ft_memcpy(void *dst, void *src, size_t n);
@@ -36,7 +35,6 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
-int			ft_isnbr(char *s);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
 int			ft_isprint(int c);
@@ -57,5 +55,6 @@ void		ft_putnbr_fd(int n, int fd);
 int         ft_strcmp(const char *s1, const char *s2);
 int			ft_isspace(char c);
 int 		ft_arrlen(char **s);
+int			ft_isnbr(char *s);
 
 #endif

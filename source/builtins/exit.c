@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// SEGMENTATION FAULT (((
-
 #include "../../minishell.h"
 
 static void		free_shell(t_shell *shell)
@@ -30,10 +28,11 @@ static void		free_shell(t_shell *shell)
 	free(shell);
 }
 
+
 void			exit_shell(t_shell *shell, int exit_status)
 {
-	free_command(shell);
 	free_tokens(shell);
+	free_command(shell);
 	free_shell(shell);
 	if (exit_status == EXIT_FAILURE && errno)
 		print_error(0, strerror(errno), 1);
@@ -46,8 +45,9 @@ void	close_shell(t_shell *shell)
 	if (!ft_isnbr(shell->command->argv[1]))
 	{
 		ft_printf("exit\n");
-		//ft_printf("minishell: exit: %s: numeric argument "\
-						"required\n", shell->command->argv[1]);
+		ft_printf("minishell: exit: ");
+		ft_printf("%s: ", shell->command->argv[1]);
+		ft_printf("numeric argument required\n");
 		exit_shell(shell, 255);
 	}
 	if (ft_arrlen(shell->command->argv) > 2)
@@ -56,10 +56,15 @@ void	close_shell(t_shell *shell)
 		ft_printf("minishell: exit: too many arguments\n");
 		g_last_exit_status = 1;
 	}
-	else
+	if (shell->command->argv[1] == NULL)
 	{
 		ft_printf("exit\n");
 		exit_shell(shell, EXIT_SUCCESS);
+	}
+	else
+	{
+		ft_printf("exit\n");
+		exit_shell(shell, ft_atoi(shell->command->argv[1]));
 	}
 }
 
