@@ -49,7 +49,7 @@ void	close_shell(t_shell *shell)
 	else
 	{
 		ft_printf("exit\n");
-		exit_shell(shell, ft_atoi(shell->command->argv[1]));
+		exit_shell(shell, EXIT_SUCCESS);
 	}
 }
 
