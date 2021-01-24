@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <fflores@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:38:23 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/24 14:38:25 by wabomina         ###   ########.fr       */
+/*   Updated: 2021/01/24 16:20:32 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		unset_valid(char *name)
 {
-	if (ft_isalpha(*name++) = NULL)
+	if (ft_isalpha(*name++) == '\0')
 		return (0);
 	while (*name)
 	{
@@ -36,7 +36,7 @@ void	unset(t_shell *shell, t_command *command)
 			remove_env(shell, command->argv[i]);
 		if (!unset_valid(command->argv[i]))
 		{
-			ft_printf_error("minishell: unset: `%s': not a valid "\
+			ft_dprintf(2, "minishell: unset: `%s': not a valid "\
 							"identifier\n", command->argv[i]);
 			g_last_exit_status = 1;
 			return ;
