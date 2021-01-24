@@ -67,7 +67,7 @@ static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 	{
 		ret = set_if_relative(shell, command, data);
 		if (ret == 1)
-			print_error(data, "command not found", 1);
+			print_error(data, "No such file or directory", 1);
 		else if (ret == 2)
 			print_error(data, "is a directory", 1);
 	}
@@ -75,7 +75,7 @@ static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 	{
 		ret = set_if_absolute(shell, command, data);
 		if (ret == 1)
-			print_error(data, "command not found", 1);
+			print_error(data, "No such file or directory", 1);
 		else if (ret == 2)
 			print_error(data, "is a directory", 1);
 	}

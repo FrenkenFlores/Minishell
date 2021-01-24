@@ -12,15 +12,22 @@
 
 #include "../../minishell.h"
 
+static int	ft_isalpha_shell(int c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_')
+		return (1024);
+	return (0);
+}
+
 int		export_valid(char *name)
 {
-	if (ft_isalpha(*name++) == 0)
+	if (!ft_isalpha_shell(*name++))
 		return (0);
 	while (*name)
 	{
-		if (*name != '_' && *name != '=' && *name != ':' &&
-				*name != '/' && !ft_isalnum(*name))
-			return (0);
+		if (*name != '_' && !ft_isalnum(*name) && *name != '=' &&
+			*name != ':' && *name != '/')
+				return (0);
 		name++;
 	}
 	return (1);
@@ -33,6 +40,8 @@ void	export(t_shell *shell, t_command *command)
 	int		i;
 
 	i = 1;
+	if (command->argv[i] == NULL)
+		print_env(shell);
 	while (command->argv[i])
 	{
 		if (!export_valid(command->argv[i]))
