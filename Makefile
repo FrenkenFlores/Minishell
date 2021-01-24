@@ -21,7 +21,6 @@ SRCS = 	./source/parser/check_command.c\
 		./source/parser/readline.c\
 		./source/parser/signals.c\
 		./source/parser/split_env_variable.c\
-		./source/parser/standart_functions_utils.c\
 		./source/parser/utils_1.c\
 		./source/parser/utils_2.c\
 		./source/parser/utils_3.c\
@@ -29,6 +28,10 @@ SRCS = 	./source/parser/check_command.c\
 		./source/builtins/env.c\
 		./source/builtins/pwd.c\
 		./source/builtins/exit.c\
+		./source/builtins/cd.c\
+		./source/builtins/export.c\
+		./source/builtins/unset.c\
+		./source/builtins/utils.c\
 		./get_next_line/get_next_line.c\
 		./get_next_line/get_next_line_utils.c
 OBJS = ${SRCS:c=o}

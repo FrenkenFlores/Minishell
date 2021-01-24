@@ -112,16 +112,29 @@ void					close_shell(t_shell *shell);
 ** unset.c
 */
 
+void					unset(t_shell *shell, t_command *command);
+int						unset_valid(char *name);
+
 /*
 ** export.c
 */
+
+void					export(t_shell *shell, t_command *command);
+int						export_valid(char *name);
+
 
 /*
 ** cd.c
 */
 
+void					cd(t_shell *shell, char **args);
+int						check_env_exist(t_shell *shell, char *variable);
+void					add_env(t_shell *shell, char *variable, char *value);
+void					upd_env(t_shell *shell, char *variable,
+								char *new_value);
+
 /*
-** parce_line.c
+** parse_line.c
 */
 t_token					*parse_line(t_shell *shell, char *line);
 void					free_tokens(t_shell *shell);
@@ -250,13 +263,9 @@ void					upd_shell_path(t_shell *shell);
 int						is_escape_char(char ch);
 
 /*
-** standart_functions_utils.c
+** utils.c
 */
 void					remove_env(t_shell *shell, char *variable);
-void					add_env(t_shell *shell, char *variable, char *value);
-void					upd_env(t_shell *shell, char *variable,
-								char *new_value);
-int						check_env_exist(t_shell *shell, char *variable);
 
 /*
 ** free_shell.c
