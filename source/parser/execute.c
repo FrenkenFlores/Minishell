@@ -1,7 +1,6 @@
 
 #include "../../minishell.h"
 
-
 int				run_buildin(t_shell *shell, t_command *command)
 {
 	if (ft_strcmp(command->argv[0], "echo"))
