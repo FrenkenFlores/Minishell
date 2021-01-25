@@ -13,7 +13,7 @@ static int		is_reg_file(t_shell *shell, t_command *command,
 	return (0);
 }
 
-static int		set_if_relative(t_shell *shell, t_command *command, char *data)
+static int		relative_path(t_shell *shell, t_command *command, char *data)
 {
 	struct stat		status_struct;
 	char			*total_path;
@@ -37,7 +37,7 @@ static int		set_if_relative(t_shell *shell, t_command *command, char *data)
 	return (1);
 }
 
-static int		set_if_absolute(t_shell *shell, t_command *command, char *data)
+static int		absolute_path(t_shell *shell, t_command *command, char *data)
 {
 	struct stat		status_struct;
 
@@ -60,20 +60,30 @@ static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 {
 	int				ret;
 
-	if (is_buildin_command(shell, data))
+	if (is_builtin_command(shell, data))
 		return (0);
 	ret = 3;
-	if (data[0] == '.')
+	if (data[1] == '.')
 	{
-		ret = set_if_relative(shell, command, data);
+		print_error(data, "command not found", 1);
+		return (0);
+	}
+	//else if (data[0] == '.' && data[1] = '\0')
+	//{
+	//	print_error(data, "filename argument required", 1);
+	//	return (0);
+	//}
+	else if (data[0] == '.')
+	{
+		ret = relative_path(shell, command, data);
 		if (ret == 1)
 			print_error(data, "No such file or directory", 1);
 		else if (ret == 2)
 			print_error(data, "is a directory", 1);
 	}
-	if (data[0] == '/')
+	else if (data[0] == '/')
 	{
-		ret = set_if_absolute(shell, command, data);
+		ret = absolute_path(shell, command, data);
 		if (ret == 1)
 			print_error(data, "No such file or directory", 1);
 		else if (ret == 2)

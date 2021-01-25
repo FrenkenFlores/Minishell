@@ -1,7 +1,7 @@
 
 #include "../../minishell.h"
 
-int				is_buildin_command(t_shell *shell, char *command)
+int				is_builtin_command(t_shell *shell, char *command)
 {
 	int	i;
 
