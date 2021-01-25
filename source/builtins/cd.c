@@ -85,6 +85,8 @@ void	cd(t_shell *shell, char **args)
 	current_cd = getcwd(NULL, 0);
 	if (chdir(args[1]) == -1)
 	{
+		if (args[1][0] == '\0')
+			return ;
 		ft_printf("minishell: cd: %s: ", args[1]);
 		ft_printf("%s\n", strerror(errno));
 		g_last_exit_status = 1;
