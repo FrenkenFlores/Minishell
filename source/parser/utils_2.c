@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:38:17 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:38:19 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -32,17 +43,17 @@ void	upd_shell_path(t_shell *shell)
 void	get_shell_path(t_shell *shell, char **env)
 {
 	int		i;
-	char	*temp; // Is not used
+	char	*temp;
 
 	if (check_env_exist(shell, "PATH"))
 	{
-		shell->path = ft_split(get_from_env("PATH=", env) + 5, ':'); // ???
+		shell->path = ft_split(get_from_env("PATH=", env) + 5, ':');
 		i = 0;
 		while (shell->path[i])
 		{
-			temp = shell->path[i]; // <----
+			temp = shell->path[i];
 			shell->path[i] = ft_strjoin(shell->path[i], "/");
-			free(temp); //  <----
+			free(temp);
 			i++;
 		}
 	}

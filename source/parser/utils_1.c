@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:38:06 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:38:08 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -58,7 +69,7 @@ t_shell		*init_shell(char **env)
 	t_shell		*shell;
 
 	if (!(shell = ft_calloc(1, sizeof(t_shell))))
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 //		exit_shell(shell, EXIT_FAILURE); // cannot free unallocated memory
 	get_env(shell, env);
 	get_shell_path(shell, env);

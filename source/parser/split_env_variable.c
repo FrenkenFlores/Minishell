@@ -1,10 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_env_variable.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:37:53 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:37:54 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
-
-/*
-** get_var_name
-** Returns string content before first '=' character with '=' character.
-*/
 
 char	*get_var_name(t_shell *shell, char *str)
 {
@@ -29,11 +35,6 @@ char	*get_var_name(t_shell *shell, char *str)
 	}
 	return (var_name);
 }
-
-/*
-** get_var_value
-** Returns string content after first '=' character.
-*/
 
 char	*get_var_value(t_shell *shell, char *str)
 {

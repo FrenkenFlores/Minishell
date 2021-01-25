@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:37:44 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:37:45 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -39,6 +50,6 @@ static void		int_handler(int signum)
 
 void			set_signals_handlers(void)
 {
-	signal(SIGQUIT, quit_handler); // (ctrl + \)
-	signal(SIGINT, int_handler); // ctrl + C
+	signal(SIGQUIT, quit_handler);
+	signal(SIGINT, int_handler);
 }

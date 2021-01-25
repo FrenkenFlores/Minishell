@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_line_utils2.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:36:56 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:36:58 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -19,7 +30,7 @@ int		process_double_quote(t_quotes *quote, t_token *token,
 	return (i);
 }
 
-int     process_operators(t_shell *shell, t_token **token,
+int		process_operators(t_shell *shell, t_token **token,
 						  char **line, int i)
 {
 	int j;
