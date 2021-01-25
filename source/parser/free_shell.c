@@ -55,7 +55,7 @@ void			nested_free(char **array)
 	free(array);
 }
 
-void	free_buf(t_shell *shell)
+void			free_buf(t_shell *shell)
 {
 	free(shell->buf);
 	shell->buf = 0;
