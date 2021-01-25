@@ -23,19 +23,23 @@ int		process_operators(t_shell *shell, t_token **token,
 										char **line, int i)
 {
 	int j;
+	int len;
 
 	j = 0;
+	len = ft_strlen(*line);
 	if (i)
 	{
 		(*token)->data[i] = '\0';
 		i = 0;
-		(*token)->next = token_init(shell, ft_strlen(*line) + 1);
+		(*token)->next = (len > 1 ? token_init(shell, 2) : token_init(shell, 1));
 		*token = (*token)->next;
 	}
-	while (*(*line) != '\0' && j < 2)
-		(*token)->data[j++] = *(*line)++;
-	if (j == 2)
-		(*token)->data[j] = '\0';
+	(*token)->data[0] = *(*line)++;
+	if (len > 1)
+	{
+		if (**line == (*token)->data[0])
+			(*token)->data[1] = *(*line)++;
+	}
 	if (**line)
 		*token = create_next_token(shell, *token, *line);
 	return (i);
