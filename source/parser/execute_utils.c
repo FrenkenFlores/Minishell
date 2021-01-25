@@ -63,7 +63,7 @@ void	child_process(t_shell *shell, t_command *command)
 	g_last_exit_status = 0;
 	if (shell->fd_pipe[0])
 		close(shell->fd_pipe[0]);
-	if (is_buildin_command(shell, command->argv[0]))
+	if (is_builtin_command(shell, command->argv[0]))
 	{
 		run_buildin(shell, command);
 		exit_shell(shell, g_last_exit_status);
@@ -73,8 +73,8 @@ void	child_process(t_shell *shell, t_command *command)
 		execve(command->correct_path, command->argv, shell->env);
 		if (errno == 13)
 		{
-//			ft_printf_error("minishell: %s: %s\n", command->correct_path,
-//							strerror(errno));
+			ft_printf("minishell: %s: ", command->correct_path);
+			ft_printf("%s\n", strerror(errno));
 			exit_shell(shell, 126);
 		}
 		exit_shell(shell, 127);

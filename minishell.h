@@ -281,6 +281,6 @@ static void				free_shell(t_shell *shell);
 */
 int						prepath_check(t_shell *shell, t_command *command,
 									char *data);
-int						is_buildin_command(t_shell *shell, char *command);
+int						is_builtin_command(t_shell *shell, char *command);
 
 #endif

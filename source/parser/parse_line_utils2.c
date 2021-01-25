@@ -19,8 +19,8 @@ int		process_double_quote(t_quotes *quote, t_token *token,
 	return (i);
 }
 
-int		process_operators(t_shell *shell, t_token **token,
-										char **line, int i)
+int     process_operators(t_shell *shell, t_token **token,
+						  char **line, int i)
 {
 	int j;
 	int len;

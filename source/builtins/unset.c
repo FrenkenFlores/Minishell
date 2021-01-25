@@ -25,22 +25,21 @@ int		unset_valid(char *name)
 	return (1);
 }
 
-void	unset(t_shell *shell, t_command *command)
-{
-	int		i;
+void	unset(t_shell *shell, t_command *command) {
+	int i;
 
 	i = 1;
 	while (command->argv[i])
 	{
-		if (check_env_exist(shell, command->argv[i]))
-			remove_env(shell, command->argv[i]);
-		if (!unset_valid(command->argv[i]))	
+		if (!unset_valid(command->argv[i]))
 		{
 			ft_printf("minishell: unset: `%s': not a valid "\
-							"identifier\n", command->argv[i]);
+                            "identifier\n", command->argv[i]);
 			g_last_exit_status = 1;
-			return ;
+			return;
 		}
+		if (check_env_exist(shell, command->argv[i]))
+			remove_env(shell, command->argv[i]);
 		i++;
 	}
 	upd_shell_path(shell);
