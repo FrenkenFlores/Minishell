@@ -12,14 +12,19 @@
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+static void	init(t_parameters *param, const char *format, int fd)
+{
+	param->fd = fd;
+	param->length = 0;
+	param->count = 0;
+	param->format_copy = format;
+}
+
+int			ft_printf(const char *format, ...)
 {
 	t_parameters	param;
 
-	param.fd = 1;
-	param.length = 0;
-	param.count = 0;
-	param.format_copy = format;
+	init(&param, format, 1);
 	va_start(param.ap, format);
 	while (param.format_copy[param.count] != '\0')
 	{
@@ -42,14 +47,11 @@ int	ft_printf(const char *format, ...)
 	return (param.length);
 }
 
-int	ft_dprintf(int fd, const char *format, ...)
+int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_parameters	param;
 
-	param.fd = fd;
-	param.length = 0;
-	param.count = 0;
-	param.format_copy = format;
+	init(&param, format, fd);
 	va_start(param.ap, format);
 	while (param.format_copy[param.count] != '\0')
 	{
