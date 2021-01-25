@@ -24,6 +24,7 @@ int     process_operators(t_shell *shell, t_token **token,
 {
 	int j;
 	int len;
+
 	j = 0;
 	len = ft_strlen(*line);
 	if (i)
