@@ -19,7 +19,7 @@ static int	ft_isalpha_shell(int c)
 	return (0);
 }
 
-int		export_valid(char *name)
+int			export_valid(char *name)
 {
 	if (!ft_isalpha_shell(*name++))
 		return (0);
@@ -27,21 +27,34 @@ int		export_valid(char *name)
 	{
 		if (*name != '_' && !ft_isalnum(*name) && *name != '=' &&
 			*name != ':' && *name != '/')
-				return (0);
+			return (0);
 		name++;
 	}
 	return (1);
 }
 
-void	export(t_shell *shell, t_command *command)
+void		additional_func(t_shell *shell, char *command)
+{
+	if (command == NULL)
+		print_env(shell);
+}
+
+void		additional_func_for_env(t_shell *shell, char *var, char *value)
+{
+	if (check_env_exist(shell, var))
+		upd_env(shell, var, value);
+	else
+		add_env(shell, var, value);
+}
+
+void		export(t_shell *shell, t_command *command)
 {
 	char	*var;
 	char	*value;
 	int		i;
 
 	i = 1;
-	if (command->argv[i] == NULL)
-		print_env(shell);
+	additional_func(shell, command->argv[i]);
 	while (command->argv[i])
 	{
 		if (!export_valid(command->argv[i]))
@@ -54,13 +67,9 @@ void	export(t_shell *shell, t_command *command)
 		}
 		var = get_var_name(shell, command->argv[i]);
 		value = get_var_value(shell, command->argv[i]);
-		if (check_env_exist(shell, var))
-			upd_env(shell, var, value);
-		else
-			add_env(shell, var, value);
+		additional_func_for_env(shell, var, value);
 		i++;
 		g_last_exit_status = 0;
 	}
 	upd_shell_path(shell);
 }
-

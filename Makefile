@@ -1,3 +1,19 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: wabomina <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/01/25 20:37:38 by wabomina          #+#    #+#              #
+#    Updated: 2021/01/25 20:37:41 by wabomina         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#COLORS
+BLUE='\033[36m'
+RESET='\033[0m'
+
 HEADER = minishell.h
 NAME = minishell
 FLAGS = -Wall -Wextra -Werror
@@ -39,6 +55,8 @@ OBJS = ${SRCS:c=o}
 all: $(NAME)
 
 $(NAME): $(SRCS) $(HEADER)
+	@echo "\033[36m=====================================\033[0m"
+	@echo "\033[36m=============MINISHELL===============\033[0m"
 	make -C libft
 	make -C ft_printf
 	$(CC) ./libft/libft.a ./ft_printf/libftprintf.a $(SRCS) -o $(NAME)
@@ -54,3 +72,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all	
+
+norm:
+	@echo "\033[36mMINISHELL SOURCES\033[0m"
+	@norminette $(SRCS) $(HEADER)

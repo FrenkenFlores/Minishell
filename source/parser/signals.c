@@ -5,9 +5,11 @@ static void		quit_handler(int signum)
 {
 	int			exit_status;
 
-	ft_printf("\b\b  \b\b");
 	if ((exit_status = wait_for_process()) == -1)
+	{
+		ft_printf("\b\b  \b\b");
 		return ;
+	}
 	else if (exit_status == 131)
 		write(2, "Quit: 3\n", 8);
 	(void)signum;

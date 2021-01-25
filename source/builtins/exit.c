@@ -28,7 +28,6 @@ static void		free_shell(t_shell *shell)
 	free(shell);
 }
 
-
 void			exit_shell(t_shell *shell, int exit_status)
 {
 	free_tokens(shell);
@@ -39,7 +38,7 @@ void			exit_shell(t_shell *shell, int exit_status)
 	exit(exit_status);
 }
 
-void	close_shell(t_shell *shell)
+void			close_shell(t_shell *shell)
 {
 	errno = 0;
 	if (!ft_isnbr(shell->command->argv[1]))
@@ -67,4 +66,3 @@ void	close_shell(t_shell *shell)
 		exit_shell(shell, ft_atoi(shell->command->argv[1]));
 	}
 }
-
