@@ -68,11 +68,12 @@ static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 		print_error(data, "command not found", 1);
 		return (0);
 	}
-	//else if (data[0] == '.' && data[1] = '\0')
-	//{
-	//	print_error(data, "filename argument required", 1);
-	//	return (0);
-	//}
+	else if (data[0] == '.' && data[1] == 0)
+	{
+		print_error(data, "filename argument required\n.: usage: . "\
+					"filename [arguments]", 1);
+		return (0);
+	}
 	else if (data[0] == '.')
 	{
 		ret = relative_path(shell, command, data);
