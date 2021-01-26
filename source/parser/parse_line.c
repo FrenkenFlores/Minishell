@@ -37,7 +37,7 @@ static int				process_wave(t_shell *shell, t_token **token)
 	str = ft_strdup(find_wave(shell, "USER"));
 	if (!str)
 		return (-10);
-	if((*token)->data)
+	if ((*token)->data)
 		free((*token)->data);
 	(*token)->data = ft_strjoin("/Users/", str);
 	return (-9);

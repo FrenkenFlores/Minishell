@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores < fflores@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 03:51:23 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/21 03:51:25 by wabomina         ###   ########.fr       */
+/*   Updated: 2021/01/26 18:15:28 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,17 @@ void					free_command(t_shell *shell);
 ** check_tokens.c
 */
 int						check_tokens(t_shell *shell, t_token *tokens);
+
+
+/*
+** expand_utils.c
+*/
+
+char    				*arg_type_num(char **var_name, t_shell *shell,
+						char **new_data, char **data);
+char					*arg_type_alpha(char **var_name, t_shell *shell,
+						char **new_data, char **data);
+
 
 /*
 ** expand_variable.c

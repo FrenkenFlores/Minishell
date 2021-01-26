@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_variable.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 00:35:50 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/26 00:35:52 by wabomina         ###   ########.fr       */
+/*   Created: 2021/01/26 18:17:08 by fflores           #+#    #+#             */
+/*   Updated: 2021/01/26 18:17:10 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,9 @@ int						expand_variable(t_shell *shell, char **new_data,
 {
 	char				*var_name;
 	char				*var_value;
-	int					i;
 
 	(*data)++;
-	if (!ft_isalpha(**data) && **data != '?' && **data != '_')
+	if (!ft_isalnum(**data) && **data != '?' && **data != '_')
 		return (ft_strlcat(*new_data, "$", ft_strlen(*new_data) + 2));
 	if (**data == '?')
 	{
@@ -110,16 +109,9 @@ int						expand_variable(t_shell *shell, char **new_data,
 			free_data_and_exit(shell, new_data, 0);
 		(*data)++;
 	}
+	else if (**data >= '0' && **data <= '9')
+		var_value = arg_type_num(&var_name, shell, new_data, data);
 	else
-	{
-		if (!(var_name = ft_calloc(ft_strlen(*data) + 1, sizeof(char))))
-			free_data_and_exit(shell, new_data, 0);
-		i = 0;
-		while (**data && ft_isalnum(**data))
-			var_name[i++] = *(*data)++;
-		set_last_var(shell, new_data, var_name);
-		if (!(var_value = get_value_by_name_and_free_varname(shell, var_name)))
-			free_data_and_exit(shell, new_data, 0);
-	}
+		var_value = arg_type_alpha(&var_name, shell, new_data, data);
 	return (cat_data(shell, new_data, var_value, data));
 }

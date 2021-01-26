@@ -37,7 +37,7 @@ t_token		*token_init(t_shell *shell, size_t len)
 	}
 	if (!(token->data = ft_calloc(len + 1, sizeof(char))))
 	{
-		free (token->data);
+		free(token->data);
 		exit_shell(shell, EXIT_FAILURE);
 	}
 	return (token);

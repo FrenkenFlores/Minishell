@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wabomina <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: fflores < fflores@student.21-school.ru>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/25 20:37:38 by wabomina          #+#    #+#              #
-#    Updated: 2021/01/25 20:37:41 by wabomina         ###   ########.fr        #
+#    Updated: 2021/01/26 18:01:20 by fflores          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS = 	./source/parser/check_command.c\
 		./source/parser/expand_str.c\
 		./source/parser/expand_str_utils.c\
 		./source/parser/expand_variable.c\
+		./source/parser/expand_utils.c\
 		./source/parser/main.c\
 		./source/parser/parse_line.c\
 		./source/parser/parse_line_utils.c\
