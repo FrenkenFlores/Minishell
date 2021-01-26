@@ -147,6 +147,10 @@ void					print_error(char *error_source, char *error_msg,
 */
 int						read_line_from_stdin(t_shell *shell, char **line);
 int						shell_gnl(t_shell *shell, char **line);
+int						shell_get_line(t_shell *shell, char **temp_line,
+										char **line);
+int						shell_read_fd(t_shell *shell, char **line,
+								char **temp_line, char *buf);
 /*
 ** signals.c
 */

@@ -12,7 +12,7 @@
 
 #include "../../minishell.h"
 
-static int		shell_get_line(t_shell *shell, char **temp_line,
+int				shell_get_line(t_shell *shell, char **temp_line,
 							char **line)
 {
 	size_t		i;
@@ -55,7 +55,7 @@ static int		clear(t_shell *shell, char **line,
 	return (0);
 }
 
-static int		shell_read_fd(t_shell *shell, char **line,
+int				shell_read_fd(t_shell *shell, char **line,
 								char **temp_line, char *buf)
 {
 	ssize_t		bytes;
