@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores < fflores@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:36:24 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/24 14:36:27 by wabomina         ###   ########.fr       */
+/*   Updated: 2021/01/26 19:27:41 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void			exit_shell(t_shell *shell, int exit_status)
 void			close_shell(t_shell *shell)
 {
 	errno = 0;
-	if (!ft_isnbr(shell->command->argv[1]))
+	if (!ft_isnbr(shell->command->argv[1]) || (ft_isnbr(shell->command->argv[1]) && ft_strlen(shell->command->argv[1]) > 18))
 	{
 		ft_printf("exit\n");
 		ft_printf("minishell: exit: ");
