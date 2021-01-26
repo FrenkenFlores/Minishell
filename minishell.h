@@ -83,7 +83,6 @@ typedef struct			s_quotes
 char					*get_var_name(t_shell *shell, char *str);
 char					*get_var_value(t_shell *shell, char *str);
 
-
 /*
 ** pwd.c
 */
@@ -93,11 +92,13 @@ void					pwd(t_shell *shell);
 /*
 ** echo.c
 */
+
 void					echo(char **args);
 
 /*
 ** env.c
 */
+
 void					print_env(t_shell *shell);
 
 /*
@@ -106,7 +107,6 @@ void					print_env(t_shell *shell);
 
 void					exit_shell(t_shell *shell, int exit_status);
 void					close_shell(t_shell *shell);
-
 
 /*
 ** unset.c
@@ -121,7 +121,6 @@ int						unset_valid(char *name);
 
 void					export(t_shell *shell, t_command *command);
 int						export_valid(char *name);
-
 
 /*
 ** cd.c
@@ -168,15 +167,16 @@ int						expand_str(t_shell *shell, t_token *token, char *data);
 /*
 ** parse_tokens.c
 */
+
 t_token					*parse_tokens(t_shell *shell, t_token *token);
 int						is_escape_char(char ch);
 
 /*
 ** check_command.c
 */
+
 void					check_correct_command(t_shell *shell,
 								t_command *command, char *data);
-
 
 /*
 ** main.c
@@ -238,7 +238,6 @@ void					ambiguous_redirect_error(t_shell *shell);
 void					open_file_error(t_shell *shell, char *filename);
 t_token					*get_next_token(t_token *token);
 
-
 /*
 ** utils_1.c
 */
@@ -279,8 +278,11 @@ static void				free_shell(t_shell *shell);
 /*
 ** check_command_utils.c
 */
-int						prepath_check(t_shell *shell, t_command *command,
-									char *data);
+
 int						is_builtin_command(t_shell *shell, char *command);
+int						prepath_check(t_shell *shell, t_command *command,
+										 char *data);
+int						check_buildin_abs_rel(t_shell *shell, t_command *command,
+								 char *data);
 
 #endif

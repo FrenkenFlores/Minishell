@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_shell.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:36:02 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:36:04 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -44,7 +55,7 @@ void			nested_free(char **array)
 	free(array);
 }
 
-void	free_buf(t_shell *shell)
+void			free_buf(t_shell *shell)
 {
 	free(shell->buf);
 	shell->buf = 0;

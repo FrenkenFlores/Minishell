@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_line_utils2.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:36:56 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:36:58 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -19,23 +30,23 @@ int		process_double_quote(t_quotes *quote, t_token *token,
 	return (i);
 }
 
-int     process_operators(t_shell *shell, t_token **token,
-						  char **line, int i)
+int		process_operators(t_shell *shell, t_token **token,
+					   char **line, int i)
 {
-	int j;
-	int len;
+	int j; // unused?
+	int l;
 
 	j = 0;
-	len = ft_strlen(*line);
+	l = ft_strlen(*line);
 	if (i)
 	{
 		(*token)->data[i] = '\0';
 		i = 0;
-		(*token)->next = (len > 1 ? token_init(shell, 2) : token_init(shell, 1));
+		(*token)->next = (l > 1 ? token_init(shell, 2) : token_init(shell, 1));
 		*token = (*token)->next;
 	}
 	(*token)->data[0] = *(*line)++;
-	if (len > 1)
+	if (l > 1)
 	{
 		if (**line == (*token)->data[0])
 			(*token)->data[1] = *(*line)++;

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int ft_arrlen(char **s)
+int	ft_arrlen(char **s)
 {
 	int len;
 

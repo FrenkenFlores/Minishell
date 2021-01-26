@@ -52,9 +52,9 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-int         ft_strcmp(const char *s1, const char *s2);
+int			ft_strcmp(const char *s1, const char *s2);
 int			ft_isspace(char c);
-int 		ft_arrlen(char **s);
+int			ft_arrlen(char **s);
 int			ft_isnbr(char *s);
 
 #endif

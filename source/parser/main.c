@@ -58,16 +58,16 @@ static void		parse_and_execute(t_shell *shell)
 
 static void		skip_whitespaces_in_line(t_shell *shell)
 {
-	char		*temp_line; // <------
+	char		*temp_line;
 
 	temp_line = shell->line;
 	shell->line = skip_whitespaces(shell->line);
-	if (!(shell->line = ft_strdup(shell->line))) // <------ leak
+	if (!(shell->line = ft_strdup(shell->line)))
 	{
-		free(temp_line);// <------
+		free(temp_line);
 		exit_shell(shell, EXIT_FAILURE);
 	}
-	free(temp_line);// <------
+	free(temp_line);
 }
 
 int				main(int argc, char *argv[], char *envp[])

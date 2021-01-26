@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readline.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:37:33 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:37:34 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -40,6 +51,7 @@ static int		shell_read_fd(t_shell *shell, char **line,
 								char **temp_line, char *buf)
 {
 	ssize_t		bytes;
+
 	while ((bytes = read(0, buf, BUFFER_SIZE)) >= 0)
 	{
 		if (g_sigint_flag)

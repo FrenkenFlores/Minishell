@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   prepath_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/21 03:19:34 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/21 03:19:37 by wabomina         ###   ########.fr       */
+/*   Created: 2021/01/26 04:40:04 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 04:40:07 by wabomina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int		prepath_check(t_shell *shell, t_command *command, char *data)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
+	int		ret;
 
-	if (!(s1 && s2))
-		return (-1);
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	while (*str1 == *str2 && *str1 && *str2)
+	if (!(ret = check_buildin_abs_rel(shell, command, data)))
 	{
-		str1++;
-		str2++;
-	}
-	if (*str1 == '\0' && *str2 == '\0')
+		command->is_found = 1;
 		return (1);
+	}
+	else if (ret == 1 || ret == 2)
+	{
+		if (ret == 1)
+			g_last_exit_status = 127;
+		else
+			g_last_exit_status = 126;
+		return (1);
+	}
 	return (0);
 }

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_command_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/26 00:33:45 by wabomina          #+#    #+#             */
+/*   Updated: 2021/01/26 00:33:47 by wabomina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../minishell.h"
 
@@ -55,7 +66,15 @@ static int		absolute_path(t_shell *shell, t_command *command, char *data)
 	return (1);
 }
 
-static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
+void			ret_error(int ret, char *data)
+{
+	if (ret == 1)
+		print_error(data, "No such file or directory", 1);
+	else if (ret == 2)
+		print_error(data, "is a directory", 1);
+}
+
+int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 									char *data)
 {
 	int				ret;
@@ -77,38 +96,12 @@ static int		check_buildin_abs_rel(t_shell *shell, t_command *command,
 	else if (data[0] == '.')
 	{
 		ret = relative_path(shell, command, data);
-		if (ret == 1)
-			print_error(data, "No such file or directory", 1);
-		else if (ret == 2)
-			print_error(data, "is a directory", 1);
+		ret_error(ret, data);
 	}
 	else if (data[0] == '/')
 	{
 		ret = absolute_path(shell, command, data);
-		if (ret == 1)
-			print_error(data, "No such file or directory", 1);
-		else if (ret == 2)
-			print_error(data, "is a directory", 1);
+		ret_error(ret, data);
 	}
 	return (ret);
-}
-
-int				prepath_check(t_shell *shell, t_command *command, char *data)
-{
-	int		ret;
-
-	if (!(ret = check_buildin_abs_rel(shell, command, data)))
-	{
-		command->is_found = 1;
-		return (1);
-	}
-	else if (ret == 1 || ret == 2)
-	{
-		if (ret == 1)
-			g_last_exit_status = 127;
-		else
-			g_last_exit_status = 126;
-		return (1);
-	}
-	return (0);
 }
