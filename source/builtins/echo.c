@@ -6,7 +6,7 @@
 /*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 14:33:36 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/24 14:33:39 by wabomina         ###   ########.fr       */
+/*   Updated: 2021/01/26 18:30:12 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,18 @@ void	echo(char **args)
 		return ;
 	}
 	new_line = 1;
-	i = 1;
+	i = 0;
 	if (ft_strcmp(args[1], "-n"))
 	{
-		i = 2;
+		i = 1;
 		new_line = 0;
 	}
-	while (args[i])
+	while (args[i++])
 	{
 		if (ft_strcmp(args[i], "-n") == 0)
 			ft_printf("%s", args[i]);
 		if (args[i + 1] && (ft_strcmp(args[i], "-n") == 0))
 			ft_printf(" ");
-		i++;
 	}
 	if (new_line)
 		ft_printf("\n");
