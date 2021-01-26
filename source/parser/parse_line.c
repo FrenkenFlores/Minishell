@@ -12,6 +12,36 @@
 
 #include "../../minishell.h"
 
+static char				*find_wave(t_shell *shell, char *src)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (shell->env[i])
+	{
+		j = 0;
+		while (shell->env[i][j] == src[j])
+			j++;
+		if (j == ft_strlen(src))
+			return (shell->env[i] + ft_strlen(src) + 1);
+		i++;
+	}
+	return (NULL);
+}
+
+static int				process_wave(t_shell *shell, t_token **token)
+{
+	char *str;
+
+	str = ft_strdup(find_wave(shell, "USER"));
+	if (!str)
+		return (-10);
+	free((*token)->data);
+	(*token)->data = ft_strjoin("/Users/", str);
+	return (-9);
+}
+
 static int				process_not_quoted(t_shell *shell, t_token **token,
 										char **line, int i)
 {
@@ -39,13 +69,15 @@ t_token					*parse_line(t_shell *shell, char *line)
 	first_token = token_init(shell, ft_strlen(line));
 	shell->tokens = first_token;
 	token = first_token;
-	while (*line)
+	while (*line && i != -9)
 		if (*line == '\\')
 			i = skip_backslashed(token, &line, i);
 		else if (*line == '"')
 			i = process_double_quote(&quote, token, &line, i);
 		else if (*line == '\'')
 			i = process_single_quote(&quote, token, &line, i);
+		else if (*line == '~')
+			i = process_wave(shell, &token);
 		else if (quote.dq || quote.sq)
 			token->data[i++] = *line++;
 		else if (!quote.dq && !quote.sq)
