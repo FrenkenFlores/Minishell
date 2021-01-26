@@ -278,8 +278,11 @@ static void				free_shell(t_shell *shell);
 /*
 ** check_command_utils.c
 */
-int						prepath_check(t_shell *shell, t_command *command,
-									char *data);
+
 int						is_builtin_command(t_shell *shell, char *command);
+int						prepath_check(t_shell *shell, t_command *command,
+										 char *data);
+int						check_buildin_abs_rel(t_shell *shell, t_command *command,
+								 char *data);
 
 #endif

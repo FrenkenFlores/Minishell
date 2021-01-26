@@ -33,6 +33,7 @@ SRCS = 	./source/parser/check_command.c\
 		./source/parser/parse_line_utils2.c\
 		./source/parser/parse_tokens.c\
 		./source/parser/parse_tokens_utils.c\
+		./source/parser/prepath_check.c\
 		./source/parser/print_error.c\
 		./source/parser/readline.c\
 		./source/parser/signals.c\
