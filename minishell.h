@@ -146,7 +146,7 @@ void					print_error(char *error_source, char *error_msg,
 ** readline.c
 */
 int						read_line_from_stdin(t_shell *shell, char **line);
-
+int						shell_gnl(t_shell *shell, char **line);
 /*
 ** signals.c
 */
@@ -281,8 +281,9 @@ static void				free_shell(t_shell *shell);
 
 int						is_builtin_command(t_shell *shell, char *command);
 int						prepath_check(t_shell *shell, t_command *command,
-										 char *data);
-int						check_buildin_abs_rel(t_shell *shell, t_command *command,
-								 char *data);
+										char *data);
+int						check_buildin_abs_rel(t_shell *shell,
+										t_command *command,
+									char *data, int ret);
 
 #endif

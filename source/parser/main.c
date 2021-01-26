@@ -27,7 +27,6 @@ static t_shell	*preset_main(int argc, char **argv, char **envp)
 	}
 	if (!(shell = init_shell(envp)))
 		exit(EXIT_FAILURE);
-//		exit_shell(shell, EXIT_FAILURE); // Memory is not allocated to be freed : ERROR
 	set_signals_handlers();
 	return (shell);
 }

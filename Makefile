@@ -36,6 +36,7 @@ SRCS = 	./source/parser/check_command.c\
 		./source/parser/prepath_check.c\
 		./source/parser/print_error.c\
 		./source/parser/readline.c\
+		./source/parser/shell_gnl.c\
 		./source/parser/signals.c\
 		./source/parser/split_env_variable.c\
 		./source/parser/utils_1.c\
@@ -58,6 +59,7 @@ all: $(NAME)
 $(NAME): $(SRCS) $(HEADER)
 	@echo "\033[36m=====================================\033[0m"
 	@echo "\033[36m=============MINISHELL===============\033[0m"
+	@echo "\033[36m=====================================\033[0m"
 	make -C libft
 	make -C ft_printf
 	$(CC) ./libft/libft.a ./ft_printf/libftprintf.a $(SRCS) -o $(NAME)

@@ -47,6 +47,14 @@ static void		join_buf(t_shell *shell, char **temp_line, char *buf)
 	free(temp);
 }
 
+static int		clear(t_shell *shell, char **line,
+				char **temp_line, char *buf)
+{
+	free(*temp_line);
+	*temp_line = NULL;
+	return (0);
+}
+
 static int		shell_read_fd(t_shell *shell, char **line,
 								char **temp_line, char *buf)
 {
@@ -55,11 +63,7 @@ static int		shell_read_fd(t_shell *shell, char **line,
 	while ((bytes = read(0, buf, BUFFER_SIZE)) >= 0)
 	{
 		if (g_sigint_flag)
-		{
-			free(*temp_line);
-			*temp_line = NULL;
-			g_sigint_flag = 0;
-		}
+			g_sigint_flag = clear(shell, line, temp_line, buf);
 		buf[bytes] = '\0';
 		if (bytes == 0 && !*temp_line)
 		{
@@ -76,34 +80,6 @@ static int		shell_read_fd(t_shell *shell, char **line,
 			break ;
 	}
 	return (bytes);
-}
-
-static int		shell_gnl(t_shell *shell, char **line)
-{
-	static char		*temp_line;
-	int				status;
-
-	if (!line)
-		return (-1);
-	if (!(shell->buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
-		return (-1);
-	if (temp_line)
-		if (shell_get_line(shell, &temp_line, line))
-		{
-			free_buf(shell);
-			return (1);
-		}
-	if ((status = shell_read_fd(shell, line, &temp_line, shell->buf)) == -1)
-	{
-		free_buf(shell);
-		return (-1);
-	}
-	free_buf(shell);
-	if (status)
-		return (1);
-	*line = temp_line;
-	temp_line = NULL;
-	return (0);
 }
 
 int				read_line_from_stdin(t_shell *shell, char **line)

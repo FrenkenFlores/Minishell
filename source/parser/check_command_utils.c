@@ -74,11 +74,9 @@ void			ret_error(int ret, char *data)
 		print_error(data, "is a directory", 1);
 }
 
-int		check_buildin_abs_rel(t_shell *shell, t_command *command,
-									char *data)
+int				check_buildin_abs_rel(t_shell *shell,
+				t_command *command, char *data, int ret)
 {
-	int				ret;
-
 	if (is_builtin_command(shell, data))
 		return (0);
 	ret = 3;

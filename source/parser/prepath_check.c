@@ -16,7 +16,7 @@ int		prepath_check(t_shell *shell, t_command *command, char *data)
 {
 	int		ret;
 
-	if (!(ret = check_buildin_abs_rel(shell, command, data)))
+	if (!(ret = check_buildin_abs_rel(shell, command, data, ret)))
 	{
 		command->is_found = 1;
 		return (1);
