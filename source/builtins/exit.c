@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fflores < fflores@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/24 14:36:24 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/26 19:27:41 by fflores          ###   ########.fr       */
+/*   Created: 2021/01/26 20:11:36 by fflores           #+#    #+#             */
+/*   Updated: 2021/01/26 20:11:39 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,18 @@ void			exit_shell(t_shell *shell, int exit_status)
 	exit(exit_status);
 }
 
+static void		prnt_err(void)
+{
+	ft_printf("exit\n");
+	ft_printf("minishell: exit: ");
+}
+
 void			close_shell(t_shell *shell)
 {
 	errno = 0;
-	if (!ft_isnbr(shell->command->argv[1]) || (ft_isnbr(shell->command->argv[1]) && ft_strlen(shell->command->argv[1]) > 18))
+	if (!ft_isnbr(shell->command->argv[1]))
 	{
-		ft_printf("exit\n");
-		ft_printf("minishell: exit: ");
+		prnt_err();
 		ft_printf("%s: ", shell->command->argv[1]);
 		ft_printf("numeric argument required\n");
 		exit_shell(shell, 255);
