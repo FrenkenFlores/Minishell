@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wabomina <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fflores <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/26 00:34:00 by wabomina          #+#    #+#             */
-/*   Updated: 2021/01/26 00:34:05 by wabomina         ###   ########.fr       */
+/*   Created: 2021/01/26 19:10:23 by fflores           #+#    #+#             */
+/*   Updated: 2021/01/26 19:10:24 by fflores          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ int		check_end_token(t_shell *shell, t_token *token,
 	if (is_first)
 	{
 		check_forbidden_token(shell, token, ";", 0);
+		return (-1);
+	}
+	else if (*(token->data) == ';' && *(token->data + 1) == ';')
+	{
+		g_last_exit_status = 258;
+		print_error(0, "syntax error near unexpected token `", 0);
+		ft_putstr_fd(token->data, 2);
+		ft_putstr_fd("'\n", 2);
+		shell->parsing_error = 1;
 		return (-1);
 	}
 	else if (check_forbidden_token(shell, token->next, ";|", 0) == -1)
