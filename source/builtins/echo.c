@@ -31,8 +31,9 @@ void	echo(char **args)
 	}
 	while (args[i])
 	{
-		ft_printf("%s", args[i]);
-		if (args[i + 1])
+		if (ft_strcmp(args[i], "-n") == 0)
+			ft_printf("%s", args[i]);
+		if (args[i + 1] && (ft_strcmp(args[i], "-n") == 0))
 			ft_printf(" ");
 		i++;
 	}
