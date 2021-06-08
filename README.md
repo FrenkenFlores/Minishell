@@ -7,7 +7,7 @@ We have used the following projects:
 - [Ft_printf](https://github.com/FrenkenFlores/Ft_printf): used to mange output;
 - [Get_next_line](https://github.com/FrenkenFlores/Get_next_line): used to mange input.
 
-##commands
+## commands
 bash builtins that are been implemented:
 - echo with option ’-n’
 - cd with only a relative or absolute path
